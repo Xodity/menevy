@@ -1,7 +1,7 @@
 package main
 
 import (
-	corecommands "menevy/bin/handler/core.commands"
+	corecommands "github.com/Xodity/menevy/bin/handler/core.commands"
 )
 
 func main() {

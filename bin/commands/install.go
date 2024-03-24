@@ -2,7 +2,7 @@ package commands
 
 import (
 	"fmt"
-	"menevy/bin/handler"
+	"github.com/Xodity/menevy/bin/handler"
 	"os"
 	"path/filepath"
 	"strings"

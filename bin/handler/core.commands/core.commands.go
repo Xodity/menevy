@@ -3,9 +3,9 @@ package core_commands
 import (
 	"flag"
 	"fmt"
-	"menevy/bin/commands"
-	"menevy/bin/handler"
-	"menevy/config"
+	"github.com/Xodity/menevy/bin/commands"
+	"github.com/Xodity/menevy/bin/handler"
+	"github.com/Xodity/menevy/config"
 	"os"
 )
 
