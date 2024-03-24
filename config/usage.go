@@ -14,6 +14,8 @@ func PrintUsage() {
 	fmt.Println("  - install")
 	fmt.Println("  - update")
 	fmt.Println("  - run-dev")
+	fmt.Println("  - create-controller")
+	fmt.Println("  - create-model")
 }
 
 func getCurrentPath() string {
@@ -26,5 +28,5 @@ func getCurrentPath() string {
 }
 
 const (
-	version = "1.0"
+	version = "1.3"
 )
