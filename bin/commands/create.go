@@ -5,6 +5,7 @@ import (
 	"io/ioutil"
 	"os"
 	"path/filepath"
+	"regexp"
 	"strings"
 )
 
@@ -22,10 +23,13 @@ func CreateController(controllerName, destinationPath string) error {
 		return fmt.Errorf("error reading source file: %v", err)
 	}
 
-	searchText := "Base"
-	replaceText := controllerName
-
-	newContent := strings.ReplaceAll(string(content), searchText, replaceText)
+	lastIndex := strings.LastIndex(controllerName, "/")
+	if lastIndex == -1 {
+		return fmt.Errorf("invalid controller name format")
+	}
+	replaceText := controllerName[lastIndex+1:]
+	re := regexp.MustCompile(`(?i)base`)
+	newContent := re.ReplaceAllString(string(content), replaceText)
 
 	file, err := os.Create(fullPath)
 	if err != nil {
@@ -56,10 +60,16 @@ func CreateModel(ModelName, destinationPath string) error {
 		return fmt.Errorf("error reading source file: %v", err)
 	}
 
-	searchText := "base"
-	replaceText := ModelName
+	lastIndex := strings.LastIndex(ModelName, "/")
+	if lastIndex == -1 {
+		return fmt.Errorf("invalid model name format")
+	}
+	replaceText := ModelName[lastIndex+1:]
 
-	newContent := strings.ReplaceAll(string(content), searchText, replaceText)
+	newContent := strings.ReplaceAll(string(content), "Base", replaceText)
+
+	lowercaseReplaceText := strings.ToLower(replaceText)
+	newContent = strings.ReplaceAll(newContent, "base", lowercaseReplaceText+"s")
 
 	file, err := os.Create(fullPath)
 	if err != nil {
@@ -72,6 +82,6 @@ func CreateModel(ModelName, destinationPath string) error {
 		return fmt.Errorf("error writing controller file: %v", err)
 	}
 
-	fmt.Println("Controller file created successfully:", fullPath)
+	fmt.Println("Model file created successfully:", fullPath)
 	return nil
 }

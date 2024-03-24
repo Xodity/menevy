@@ -46,9 +46,9 @@ func CoreHandler() {
 		}
 		fmt.Println("Composer update finished successfully.")
 	case "run-dev":
-		err := handler.RunCommand("go", "-S", "localhost:4000", "-t", "public")
+		err := handler.RunCommand("php", "-S", "localhost:4000", "-t", "public")
 		if err != nil {
-			fmt.Println("Error running 'go localhost server':", err)
+			fmt.Println("Error running 'php localhost server':", err)
 			os.Exit(1)
 		}
 		fmt.Println("Composer update finished successfully.")
